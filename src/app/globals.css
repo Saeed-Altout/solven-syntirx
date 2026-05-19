@@ -40,6 +40,7 @@
   --ds-accent-orange-glow: rgba(255, 89, 0, 0.22);
   --ds-accent-blue-glow: rgba(0, 117, 255, 0.34);
   --ds-accent-green-glow: rgba(34, 255, 153, 0.18);
+  --ds-accent-yellow-glow: rgba(255, 197, 61, 0.22);
   --ds-accent-red-glow: rgba(255, 32, 71, 0.34);
 
   /* shadcn compatibility — dark-canvas defaults */
@@ -102,6 +103,7 @@
   --ds-accent-orange-glow: rgba(255, 89, 0, 0.10);
   --ds-accent-blue-glow: rgba(0, 117, 255, 0.12);
   --ds-accent-green-glow: rgba(34, 255, 153, 0.10);
+  --ds-accent-yellow-glow: rgba(255, 197, 61, 0.10);
   --ds-accent-red-glow: rgba(255, 32, 71, 0.10);
 
   /* shadcn tokens */
@@ -352,6 +354,13 @@
     background: radial-gradient(
       ellipse 80% 400px at 50% 0%,
       var(--ds-accent-green-glow) 0%,
+      transparent 100%
+    );
+  }
+  .glow-yellow {
+    background: radial-gradient(
+      ellipse 80% 400px at 50% 0%,
+      var(--ds-accent-yellow-glow) 0%,
       transparent 100%
     );
   }

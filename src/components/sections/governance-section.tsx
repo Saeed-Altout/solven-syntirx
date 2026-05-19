@@ -5,15 +5,16 @@ import { useTranslations } from "next-intl";
 import { AnimatedSection } from "@/components/animated-section";
 
 const ICONS = [ShieldCheck, Lock, FileText, Settings, AlertTriangle];
-const COLORS = ["text-accent-green", "text-accent-blue", "text-accent-yellow", "text-accent-orange", "text-accent-red"];
+const COLORS = ["text-accent-yellow", "text-accent-yellow", "text-accent-yellow", "text-accent-yellow", "text-accent-yellow"];
 
 export function GovernanceSection() {
   const t = useTranslations("governance");
   const points = t.raw("points") as string[];
 
   return (
-    <section className="bg-canvas px-6 py-24 lg:px-8 lg:py-32">
-      <div className="mx-auto max-w-300">
+    <section className="relative overflow-hidden bg-canvas px-6 py-24 lg:px-8 lg:py-32">
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-150 glow-yellow" />
+      <div className="relative mx-auto max-w-300">
         <AnimatedSection variant="fade-up">
           <span className="inline-flex items-center rounded-ds-full border border-hairline-strong bg-surface-elevated px-3 py-1 font-sans text-xs text-body-text mb-6 shadow-[0_0_10px_rgba(255,197,61,0.15)]">
             {t("badge")}
