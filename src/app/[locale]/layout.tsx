@@ -55,7 +55,14 @@ export async function generateMetadata({
     title: t("title"),
     description: t("description"),
     icons: {
-      icon: "/favicon.ico",
+      icon: [
+        { url: "/favicon-dark.svg", media: "(prefers-color-scheme: light)", type: "image/svg+xml" },
+        { url: "/favicon-light.svg", media: "(prefers-color-scheme: dark)", type: "image/svg+xml" },
+      ],
+      apple: "/icon-dark.svg",
+      other: [
+        { rel: "icon", url: "/icon-dark.svg", sizes: "100x100", type: "image/svg+xml" },
+      ],
     },
   };
 }
@@ -79,12 +86,13 @@ export default async function LocaleLayout({
       suppressHydrationWarning
       className={`${playfairDisplay.variable} ${dmSans.variable} ${inter.variable} ${geistMono.variable} ${tajawal.variable}`}
     >
-      <body>
+      <body suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem={false}
           disableTransitionOnChange
+          scriptProps={{ suppressHydrationWarning: true }}
         >
           <NextIntlClientProvider messages={messages}>
             <ReactQueryProvider>

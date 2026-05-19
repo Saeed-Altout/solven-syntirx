@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Logo } from "@/components/logo";
 import type { TranslationValues } from "next-intl";
+import { AnimatedSection } from "@/components/animated-section";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type TFn = (key: any, values?: TranslationValues) => string;
@@ -27,16 +28,19 @@ export function Footer({ t, locale }: FooterProps) {
   return (
     <footer className="bg-canvas border-t border-hairline px-6 py-16 lg:px-8">
       <div className="mx-auto max-w-300">
+        <AnimatedSection variant="fade-up">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-divider-soft">
           {/* Brand */}
           <div className="col-span-2 lg:col-span-1">
-            <Logo width={120} height={28} />
+            <Logo height={28} />
             <p className="mt-4 font-body text-sm text-ash leading-relaxed max-w-xs">
               {t("tagline")}
             </p>
             <div className="mt-5 flex items-center gap-2">
               <span className="inline-block h-2 w-2 rounded-ds-full bg-accent-green" />
-              <span className="font-sans text-xs text-charcoal">{t("status")}</span>
+              <span className="font-sans text-xs text-charcoal">
+                {t("status")}
+              </span>
             </div>
           </div>
 
@@ -48,7 +52,10 @@ export function Footer({ t, locale }: FooterProps) {
             <ul className="space-y-3">
               {companyLinks.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="font-body text-sm text-ash hover:text-ink transition-colors">
+                  <Link
+                    href={l.href}
+                    className="font-body text-sm text-ash hover:text-ink transition-colors"
+                  >
                     {l.label}
                   </Link>
                 </li>
@@ -64,7 +71,10 @@ export function Footer({ t, locale }: FooterProps) {
             <ul className="space-y-3">
               {legalLinks.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="font-body text-sm text-ash hover:text-ink transition-colors">
+                  <Link
+                    href={l.href}
+                    className="font-body text-sm text-ash hover:text-ink transition-colors"
+                  >
                     {l.label}
                   </Link>
                 </li>
@@ -79,13 +89,17 @@ export function Footer({ t, locale }: FooterProps) {
             </p>
             <ul className="space-y-3">
               <li>
-                <Link href={`/${locale}/#contact`} className="font-body text-sm text-ash hover:text-ink transition-colors">
+                <Link
+                  href={`/${locale}/#contact`}
+                  className="font-body text-sm text-ash hover:text-ink transition-colors"
+                >
                   {t("links.getInTouch")}
                 </Link>
               </li>
             </ul>
           </div>
         </div>
+        </AnimatedSection>
 
         <p className="pt-8 font-sans text-xs text-stone text-center">
           {t("copyright", { year })}

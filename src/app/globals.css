@@ -74,32 +74,61 @@
   --sidebar-ring: rgba(255, 255, 255, 0.3);
 }
 
-/* Light mode overrides (only used if user switches to light) */
+/* Light mode overrides */
 .light {
-  --background: #f1f7fe;
-  --foreground: #000000;
-  --card: #ffffff;
-  --card-foreground: #000000;
+  /* DESIGN.md surface & canvas — light inversions */
+  --ds-canvas: #ffffff;
+  --ds-surface-card: #f5f7fa;
+  --ds-surface-elevated: #eef1f6;
+  --ds-surface-deep: #e8ecf2;
+  --ds-surface-light: #f1f7fe;
+
+  /* Text — dark on light */
+  --ds-ink: #0a0a0c;
+  --ds-body-text: rgba(10, 10, 12, 0.82);
+  --ds-charcoal: rgba(10, 10, 12, 0.6);
+  --ds-mute: #6b7280;
+  --ds-ash: #9ca3af;
+  --ds-stone: #d1d5db;
+  --ds-on-light: #000000;
+  --ds-on-light-mute: rgba(0, 0, 51, 0.7);
+
+  /* Borders — dark hairlines on light */
+  --ds-hairline: rgba(0, 0, 0, 0.06);
+  --ds-hairline-strong: rgba(0, 0, 0, 0.12);
+  --ds-divider-soft: rgba(0, 0, 0, 0.04);
+
+  /* Accents stay the same — just toned down glows */
+  --ds-accent-orange-glow: rgba(255, 89, 0, 0.10);
+  --ds-accent-blue-glow: rgba(0, 117, 255, 0.12);
+  --ds-accent-green-glow: rgba(34, 255, 153, 0.10);
+  --ds-accent-red-glow: rgba(255, 32, 71, 0.10);
+
+  /* shadcn tokens */
+  --background: #ffffff;
+  --foreground: #0a0a0c;
+  --card: #f5f7fa;
+  --card-foreground: #0a0a0c;
   --popover: #ffffff;
-  --popover-foreground: #000000;
-  --primary: #000000;
+  --popover-foreground: #0a0a0c;
+  --primary: #0a0a0c;
   --primary-foreground: #ffffff;
-  --secondary: #f1f7fe;
-  --secondary-foreground: #000000;
-  --muted: #e8eef5;
-  --muted-foreground: rgba(0, 0, 51, 0.7);
-  --accent: #e8eef5;
-  --accent-foreground: #000000;
+  --secondary: #eef1f6;
+  --secondary-foreground: #0a0a0c;
+  --muted: #eef1f6;
+  --muted-foreground: rgba(10, 10, 12, 0.6);
+  --accent: #eef1f6;
+  --accent-foreground: #0a0a0c;
   --destructive: #ff2047;
   --border: rgba(0, 0, 0, 0.12);
   --input: rgba(0, 0, 0, 0.12);
-  --ring: rgba(0, 0, 0, 0.3);
-  --sidebar: #f1f7fe;
-  --sidebar-foreground: #000000;
-  --sidebar-primary: #000000;
+  --ring: rgba(0, 0, 0, 0.25);
+  --sidebar: #f5f7fa;
+  --sidebar-foreground: #0a0a0c;
+  --sidebar-primary: #0a0a0c;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #e8eef5;
-  --sidebar-accent-foreground: #000000;
+  --sidebar-accent: #eef1f6;
+  --sidebar-accent-foreground: #0a0a0c;
   --sidebar-border: rgba(0, 0, 0, 0.08);
   --sidebar-ring: rgba(0, 0, 0, 0.2);
 }
@@ -241,21 +270,72 @@
     letter-spacing: -0.005em;
   }
 
-  /* Arabic locale: Tajawal overrides sans + body fonts */
-  [lang="ar"] body,
+  /* Arabic locale: Tajawal overrides all font classes */
+  [dir="rtl"],
   [dir="rtl"] body {
     font-family: var(--font-tajawal), "Tajawal", "Cairo", system-ui, sans-serif;
   }
 
-  [dir="rtl"] .font-body {
+  [dir="rtl"] .font-body,
+  [dir="rtl"] .font-sans,
+  [dir="rtl"] .font-heading,
+  [dir="rtl"] .font-display,
+  [dir="rtl"] .font-mono {
     font-family: var(--font-tajawal), "Tajawal", "Cairo", system-ui, sans-serif;
     letter-spacing: 0;
   }
+}
 
-  [dir="rtl"] .font-sans,
-  [dir="rtl"] .font-heading {
-    font-family: var(--font-tajawal), "Tajawal", "Cairo", system-ui, sans-serif;
+/* ─── Entrance animations ─────────────────────────────────────────────────── */
+@layer utilities {
+  /* Base: hidden state */
+  .anim-fade-up {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
   }
+  .anim-fade-down {
+    opacity: 0;
+    transform: translateY(-24px);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .anim-fade-left {
+    opacity: 0;
+    transform: translateX(-36px);
+    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .anim-fade-right {
+    opacity: 0;
+    transform: translateX(36px);
+    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .anim-scale-up {
+    opacity: 0;
+    transform: scale(0.94);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .anim-fade {
+    opacity: 0;
+    transition: opacity 0.7s ease;
+  }
+
+  /* Visible state — add this class via JS to trigger */
+  .in-view {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Stagger delays for child elements */
+  .stagger-1 { transition-delay: 0.08s; }
+  .stagger-2 { transition-delay: 0.16s; }
+  .stagger-3 { transition-delay: 0.24s; }
+  .stagger-4 { transition-delay: 0.32s; }
+  .stagger-5 { transition-delay: 0.40s; }
 }
 
 /* ─── Utility: atmospheric section glow ───────────────────────────────────── */
