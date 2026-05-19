@@ -24,6 +24,9 @@
     "ctaPrimary": "Partner With Us",
     "ctaSecondary": "See What We Build"
   },
+  "partners": {
+    "label": "Our Strategic Partners"
+  },
   "about": {
     "badge": "Who We Are",
     "headline": "We are more than a service provider.",

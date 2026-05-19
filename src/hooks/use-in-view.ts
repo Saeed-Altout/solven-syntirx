@@ -9,8 +9,8 @@ interface UseInViewOptions {
 }
 
 export function useInView<T extends Element = HTMLDivElement>({
-  threshold = 0.15,
-  rootMargin = "0px 0px -60px 0px",
+  threshold = 0.1,
+  rootMargin = "0px 0px -40px 0px",
   once = true,
 }: UseInViewOptions = {}) {
   const ref = useRef<T>(null);
@@ -19,6 +19,13 @@ export function useInView<T extends Element = HTMLDivElement>({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    // If already visible on mount (e.g. hero above the fold), trigger immediately
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setInView(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {

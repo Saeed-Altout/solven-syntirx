@@ -20,9 +20,10 @@ interface PageProps {
 export default async function LandingPage({ params }: PageProps) {
   const { locale } = await params;
 
-  const [tHero, tAbout, tWhyNow, tWhatWeBuild, tBusinessModel, tValueProp, tVision, tGovernance, tCta, tFooter] =
+  const [tHero, tPartners, tAbout, tWhyNow, tWhatWeBuild, tBusinessModel, tValueProp, tVision, tGovernance, tCta, tFooter] =
     await Promise.all([
       getTranslations({ locale, namespace: "hero" }),
+      getTranslations({ locale, namespace: "partners" }),
       getTranslations({ locale, namespace: "about" }),
       getTranslations({ locale, namespace: "whyNow" }),
       getTranslations({ locale, namespace: "whatWeBuild" }),
@@ -39,7 +40,7 @@ export default async function LandingPage({ params }: PageProps) {
       <Navbar locale={locale} />
       <main>
         <HeroSection t={tHero} locale={locale} />
-        <PartnersSection />
+        <PartnersSection label={tPartners("label")} />
         <AboutSection t={tAbout} />
         <WhyNowSection t={tWhyNow} />
         <WhatWeBuildSection t={tWhatWeBuild} />

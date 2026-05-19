@@ -32,7 +32,7 @@ const PARTNERS = [
   },
 ];
 
-export function PartnersSection() {
+export function PartnersSection({ label }: { label?: string }) {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -48,7 +48,7 @@ export function PartnersSection() {
 
         <AnimatedSection variant="fade-up">
           <p className="text-center font-sans text-xs text-stone uppercase tracking-widest mb-12">
-            Trusted by our partners
+            {label ?? "Trusted by our partners"}
           </p>
         </AnimatedSection>
 

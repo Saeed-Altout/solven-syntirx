@@ -24,6 +24,9 @@
     "ctaPrimary": "كن شريكنا",
     "ctaSecondary": "اكتشف ما نبنيه"
   },
+  "partners": {
+    "label": "شركاؤنا الاستراتيجيون"
+  },
   "about": {
     "badge": "من نحن",
     "headline": "نحن أكثر من مزود خدمات.",
