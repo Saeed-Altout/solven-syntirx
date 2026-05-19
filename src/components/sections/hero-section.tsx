@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { TranslationValues } from "next-intl";
 import { AnimatedSection } from "@/components/animated-section";
+import { HeroFlowVisual } from "@/components/hero-flow-visual";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type TFn = (key: any, values?: TranslationValues) => string;
@@ -96,8 +97,13 @@ export function HeroSection({ t, locale }: HeroSectionProps) {
           </div>
         </AnimatedSection>
 
+        {/* Flow visual */}
+        <AnimatedSection variant="fade-up" delay={0.45} className="w-full mt-14">
+          <HeroFlowVisual locale={locale} />
+        </AnimatedSection>
+
         {/* Bottom fade line */}
-        <div className="mt-16 w-px h-10 bg-linear-to-b from-hairline-strong to-transparent" />
+        <div className="mt-8 w-px h-10 bg-linear-to-b from-hairline-strong to-transparent" />
       </div>
     </section>
   );
