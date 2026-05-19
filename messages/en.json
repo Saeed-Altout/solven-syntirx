@@ -30,13 +30,25 @@
   "about": {
     "badge": "Who We Are",
     "headline": "We are more than a service provider.",
-    "body": "We are a regional technology operations and investment company with operational roots in Saudi Arabia, enabling digital transformation in Syria through a model that integrates:",
-    "points": [
-      "Advanced technical engineering",
-      "Structured investment frameworks",
-      "Long-term operational management"
-    ],
-    "closing": "We are not a traditional service provider. We are a partner in building scalable, sustainable digital ecosystems."
+    "body": "A regional technology company operating at the intersection of engineering, investment, and digital infrastructure.",
+    "cards": [
+      {
+        "title": "Technical Engineering",
+        "description": "We design and build scalable digital systems — cloud-native, API-first, and engineered for long-term reliability."
+      },
+      {
+        "title": "Investment Framework",
+        "description": "We structure and manage technology investments with deep due diligence, sustainable growth modeling, and operational oversight."
+      },
+      {
+        "title": "Operational Management",
+        "description": "We don't just launch — we operate. Our team stays embedded post-launch to ensure systems scale with the business."
+      },
+      {
+        "title": "Strategic Partnerships",
+        "description": "We build long-term partnerships that align capital, technology, and talent toward a shared digital future in Syria."
+      }
+    ]
   },
   "whyNow": {
     "badge": "Why Now",
