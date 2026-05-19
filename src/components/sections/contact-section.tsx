@@ -6,6 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AnimatedSection } from "@/components/animated-section";
+import { NetworkGlobe } from "@/components/network-globe";
 
 interface ContactFormData {
   name: string;
@@ -51,28 +52,30 @@ export function ContactSection() {
     "w-full h-10 rounded-ds-md border border-hairline-strong bg-surface-card px-3.5 font-sans text-sm text-ink placeholder:text-stone outline-none focus:border-ink transition-colors";
 
   return (
-    <section id="contact" className="bg-canvas px-6 py-24 lg:px-8 lg:py-32">
-      <div className="mx-auto max-w-[1200px]">
+    <section id="contact" className="relative bg-canvas px-6 py-24 lg:px-8 lg:py-32 overflow-hidden">
+      <div className="mx-auto max-w-300">
         <AnimatedSection variant="fade-up">
           <span className="inline-flex items-center rounded-ds-full border border-hairline-strong bg-surface-elevated px-3 py-1 font-sans text-xs text-body-text mb-6 shadow-[0_0_10px_rgba(59,158,255,0.18)]">
             {t("badge")}
           </span>
         </AnimatedSection>
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          <AnimatedSection variant="fade-right">
-            <h2 className="font-display text-[clamp(2rem,4vw,3rem)] leading-none tracking-tight text-ink">
-              {t("headline")}
-            </h2>
-            <p className="mt-6 font-body text-base text-body-text leading-relaxed">
-              {t("body")}
-            </p>
-          </AnimatedSection>
 
-          {/* Form card */}
-          <AnimatedSection variant="fade-left" delay={0.15}>
-          <div className="rounded-ds-lg border border-hairline-strong bg-surface-card p-8">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
+
+          {/* Left — title + body + form */}
+          <AnimatedSection variant="fade-right" className="flex flex-col gap-8">
+            <div>
+              <h2 className="font-display text-[clamp(2rem,4vw,3rem)] leading-none tracking-tight text-ink">
+                {t("headline")}
+              </h2>
+              <p className="mt-5 font-body text-base text-body-text leading-relaxed">
+                {t("body")}
+              </p>
+            </div>
+
+            {/* Form — no card wrapper, just the fields */}
             {mutation.isSuccess ? (
-              <div className="flex flex-col items-center gap-4 py-8 text-center">
+              <div className="flex flex-col items-center gap-4 py-12 text-center">
                 <CheckCircle size={32} className="text-accent-green" />
                 <p className="font-body text-base text-body-text">{t("success")}</p>
               </div>
@@ -146,8 +149,15 @@ export function ContactSection() {
                 </button>
               </form>
             )}
-          </div>
           </AnimatedSection>
+
+          {/* Right — globe, transparent, no card */}
+          <AnimatedSection variant="fade-left" delay={0.15} className="min-h-96 lg:min-h-0">
+            <div className="w-full h-full min-h-96">
+              <NetworkGlobe />
+            </div>
+          </AnimatedSection>
+
         </div>
       </div>
     </section>
