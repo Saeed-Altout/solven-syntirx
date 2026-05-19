@@ -20,24 +20,34 @@ interface PageProps {
 export default async function LandingPage({ params }: PageProps) {
   const { locale } = await params;
 
-  const [tHero, tPartners, tWhyNow, tWhatWeBuild, tBusinessModel, tValueProp, tVision, tGovernance, tCta, tFooter] =
-    await Promise.all([
-      getTranslations({ locale, namespace: "hero" }),
-      getTranslations({ locale, namespace: "partners" }),
-      getTranslations({ locale, namespace: "whyNow" }),
-      getTranslations({ locale, namespace: "whatWeBuild" }),
-      getTranslations({ locale, namespace: "businessModel" }),
-      getTranslations({ locale, namespace: "valueProposition" }),
-      getTranslations({ locale, namespace: "vision" }),
-      getTranslations({ locale, namespace: "governance" }),
-      getTranslations({ locale, namespace: "cta" }),
-      getTranslations({ locale, namespace: "footer" }),
-    ]);
+  const [
+    tHero,
+    tPartners,
+    tWhyNow,
+    tWhatWeBuild,
+    tBusinessModel,
+    tValueProp,
+    tVision,
+    tGovernance,
+    tCta,
+    tFooter,
+  ] = await Promise.all([
+    getTranslations({ locale, namespace: "hero" }),
+    getTranslations({ locale, namespace: "partners" }),
+    getTranslations({ locale, namespace: "whyNow" }),
+    getTranslations({ locale, namespace: "whatWeBuild" }),
+    getTranslations({ locale, namespace: "businessModel" }),
+    getTranslations({ locale, namespace: "valueProposition" }),
+    getTranslations({ locale, namespace: "vision" }),
+    getTranslations({ locale, namespace: "governance" }),
+    getTranslations({ locale, namespace: "cta" }),
+    getTranslations({ locale, namespace: "footer" }),
+  ]);
 
   return (
     <>
       <Navbar locale={locale} />
-      <main>
+      <main className="overflow-hidden">
         <HeroSection t={tHero} locale={locale} />
         <PartnersSection label={tPartners("label")} />
         <AboutSection />
