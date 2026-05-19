@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 function MailIcon({ size = 16 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -53,6 +55,15 @@ function HeadphonesIcon({ size = 16 }: { size?: number }) {
   );
 }
 
+function CloseIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18" />
+      <line x1="6" y1="6" x2="18" y2="18" />
+    </svg>
+  );
+}
+
 const LINKS = [
   { icon: MailIcon,      href: process.env.NEXT_PUBLIC_SOCIAL_EMAIL     ?? "#", label: "Email"     },
   { icon: WhatsAppIcon,  href: process.env.NEXT_PUBLIC_SOCIAL_WHATSAPP  ?? "#", label: "WhatsApp"  },
@@ -68,35 +79,85 @@ const SUPPORT = {
 };
 
 export function FloatingSidebar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   return (
-    <div
-      className="fixed top-1/2 -translate-y-1/2 z-40 flex flex-col items-center gap-2"
-      style={{ insetInlineEnd: "1rem" }}
-    >
-      {LINKS.map(({ icon: Icon, href, label }) => (
+    <>
+      {/* ── Desktop / tablet: vertical sidebar centered on edge ── */}
+      <div
+        className="hidden lg:flex fixed top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-2"
+        style={{ insetInlineEnd: "1rem" }}
+      >
+        {LINKS.map(({ icon: Icon, href, label }) => (
+          <a
+            key={label}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={label}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-surface-elevated border border-hairline-strong text-charcoal hover:text-ink hover:bg-surface-card transition-all duration-200 hover:scale-110"
+          >
+            <Icon size={16} />
+          </a>
+        ))}
+        <div className="w-px h-4 bg-hairline-strong rounded-full" />
         <a
-          key={label}
-          href={href}
+          href={SUPPORT.href}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={label}
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-surface-elevated border border-hairline-strong text-charcoal hover:text-ink hover:bg-surface-card transition-all duration-200 hover:scale-110"
+          aria-label={SUPPORT.label}
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-accent-green text-canvas hover:opacity-90 transition-all duration-200 hover:scale-110 shadow-[0_0_16px_rgba(17,255,153,0.4)]"
         >
-          <Icon size={16} />
+          <SUPPORT.icon size={16} />
         </a>
-      ))}
+      </div>
 
-      <div className="w-px h-4 bg-hairline-strong rounded-full" />
-
-      <a
-        href={SUPPORT.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={SUPPORT.label}
-        className="flex h-10 w-10 items-center justify-center rounded-full bg-accent-green text-canvas hover:opacity-90 transition-all duration-200 hover:scale-110 shadow-[0_0_16px_rgba(17,255,153,0.4)]"
+      {/* ── Mobile: FAB + slide-up tray ── */}
+      <div
+        className="lg:hidden fixed z-50 flex flex-col items-center gap-2"
+        style={{ bottom: "1.25rem", insetInlineEnd: "1.25rem" }}
       >
-        <SUPPORT.icon size={16} />
-      </a>
-    </div>
+        {/* Expanded tray */}
+        <div
+          className="flex flex-col items-center gap-2"
+          style={{
+            opacity: mobileOpen ? 1 : 0,
+            transform: mobileOpen ? "translateY(0)" : "translateY(16px)",
+            pointerEvents: mobileOpen ? "auto" : "none",
+            transition: "opacity 0.25s ease, transform 0.25s ease",
+          }}
+        >
+          {LINKS.map(({ icon: Icon, href, label }, i) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-surface-elevated border border-hairline-strong text-charcoal"
+              style={{
+                transition: `opacity 0.2s ease ${i * 40}ms, transform 0.2s ease ${i * 40}ms`,
+                opacity: mobileOpen ? 1 : 0,
+                transform: mobileOpen ? "scale(1)" : "scale(0.85)",
+              }}
+            >
+              <Icon size={16} />
+            </a>
+          ))}
+          <div className="w-px h-3 bg-hairline-strong rounded-full" />
+        </div>
+
+        {/* FAB trigger — same 40×40 size as social icons but green */}
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label={mobileOpen ? "Close social links" : "Open social links"}
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-accent-green text-canvas shadow-[0_0_20px_rgba(17,255,153,0.5)] transition-transform duration-200 active:scale-95"
+        >
+          <div style={{ transition: "transform 0.3s ease", transform: mobileOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
+            {mobileOpen ? <CloseIcon size={18} /> : <HeadphonesIcon size={18} />}
+          </div>
+        </button>
+      </div>
+    </>
   );
 }
