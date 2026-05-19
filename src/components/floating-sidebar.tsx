@@ -69,7 +69,10 @@ const SUPPORT = {
 
 export function FloatingSidebar() {
   return (
-    <div className="fixed right-4 top-1/2 -translate-y-1/2 z-40 flex flex-col items-center gap-2">
+    <div
+      className="fixed top-1/2 -translate-y-1/2 z-40 flex flex-col items-center gap-2"
+      style={{ insetInlineEnd: "1rem" }}
+    >
       {LINKS.map(({ icon: Icon, href, label }) => (
         <a
           key={label}

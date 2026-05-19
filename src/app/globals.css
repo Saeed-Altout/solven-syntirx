@@ -199,13 +199,7 @@
   --color-accent-green-glow: var(--ds-accent-green-glow);
   --color-accent-red-glow: var(--ds-accent-red-glow);
 
-  /* Fonts */
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
-  --font-display: var(--font-display);
-  --font-body: var(--font-body);
-  --font-tajawal: var(--font-tajawal);
-  --font-heading: var(--font-sans);
+  /* Fonts — intentionally omitted here; next/font sets these as real values on <html> */
 
   /* shadcn radius scale */
   --radius-sm: calc(var(--radius) - 4px);

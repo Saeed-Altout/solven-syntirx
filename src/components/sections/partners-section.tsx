@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 import { AnimatedSection } from "@/components/animated-section";
 
 const PARTNERS = [
@@ -31,9 +33,18 @@ const PARTNERS = [
 ];
 
 export function PartnersSection() {
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  // dark → white logos, light → black logos
+  const baseFilter = mounted && resolvedTheme === "light"
+    ? "brightness(0)"
+    : "brightness(0) invert(1)";
+
   return (
     <section className="relative bg-canvas border-t border-hairline px-6 py-16 lg:px-8 lg:py-20">
-      <div className="mx-auto max-w-[1200px]">
+      <div className="mx-auto max-w-300">
 
         <AnimatedSection variant="fade-up">
           <p className="text-center font-sans text-xs text-stone uppercase tracking-widest mb-12">
@@ -57,14 +68,12 @@ export function PartnersSection() {
                   width={140}
                   height={40}
                   className="h-9 w-auto object-contain opacity-40 transition-all duration-300 group-hover:opacity-100"
-                  style={{
-                    filter: "brightness(0) invert(1)",
-                  }}
+                  style={{ filter: baseFilter }}
                   onMouseEnter={(e) => {
                     (e.currentTarget as HTMLImageElement).style.filter = partner.hoverFilter;
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLImageElement).style.filter = "brightness(0) invert(1)";
+                    (e.currentTarget as HTMLImageElement).style.filter = baseFilter;
                   }}
                 />
               </a>
