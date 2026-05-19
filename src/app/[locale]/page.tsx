@@ -28,7 +28,6 @@ export default async function LandingPage({ params }: PageProps) {
     tBusinessModel,
     tValueProp,
     tVision,
-    tGovernance,
     tCta,
     tFooter,
   ] = await Promise.all([
@@ -39,7 +38,6 @@ export default async function LandingPage({ params }: PageProps) {
     getTranslations({ locale, namespace: "businessModel" }),
     getTranslations({ locale, namespace: "valueProposition" }),
     getTranslations({ locale, namespace: "vision" }),
-    getTranslations({ locale, namespace: "governance" }),
     getTranslations({ locale, namespace: "cta" }),
     getTranslations({ locale, namespace: "footer" }),
   ]);
@@ -56,7 +54,7 @@ export default async function LandingPage({ params }: PageProps) {
         <BusinessModelSection t={tBusinessModel} />
         <ValuePropositionSection t={tValueProp} />
         <VisionSection t={tVision} />
-        <GovernanceSection t={tGovernance} />
+        <GovernanceSection />
         <CtaSection t={tCta} locale={locale} />
         <ContactSection />
         <Footer t={tFooter} locale={locale} />
