@@ -8,6 +8,7 @@ import { routing } from "@/i18n/routing";
 import { ReactQueryProvider } from "@/components/react-query-provider";
 import { CookieBanner } from "@/components/cookie-banner";
 import { LoadingOverlay } from "@/components/loading-overlay";
+import { FloatingSidebar } from "@/components/floating-sidebar";
 import "@/app/globals.css";
 
 const playfairDisplay = Playfair_Display({
@@ -98,6 +99,7 @@ export default async function LocaleLayout({
             <ReactQueryProvider>
               <LoadingOverlay />
               {children}
+              <FloatingSidebar />
               <CookieBanner />
             </ReactQueryProvider>
           </NextIntlClientProvider>

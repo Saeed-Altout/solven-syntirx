@@ -17,7 +17,7 @@ export function ValuePropositionSection({ t }: ValuePropositionSectionProps) {
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-150 glow-green" />
       <div className="relative mx-auto max-w-300">
         <AnimatedSection variant="fade-up">
-          <span className="inline-flex items-center rounded-ds-full border border-hairline-strong bg-surface-elevated px-3 py-1 font-sans text-xs text-body-text mb-6">
+          <span className="inline-flex items-center rounded-ds-full border border-hairline-strong bg-surface-elevated px-3 py-1 font-sans text-xs text-body-text mb-6 shadow-[0_0_10px_rgba(17,255,153,0.15)]">
             {t("badge")}
           </span>
         </AnimatedSection>

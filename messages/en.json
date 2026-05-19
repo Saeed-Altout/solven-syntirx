@@ -92,11 +92,26 @@
     "headline": "A clear framework for every engagement.",
     "body": "Our framework balances risk, innovation, and sustainability.",
     "steps": [
-      { "number": "01", "title": "Market & Opportunity Analysis" },
-      { "number": "02", "title": "Technical Architecture Design" },
-      { "number": "03", "title": "Investment Structuring" },
-      { "number": "04", "title": "Structured Launch" },
-      { "number": "05", "title": "Growth & Scaling Management" }
+      {
+        "number": "01",
+        "title": "Market & Opportunity Analysis"
+      },
+      {
+        "number": "02",
+        "title": "Technical Architecture Design"
+      },
+      {
+        "number": "03",
+        "title": "Investment Structuring"
+      },
+      {
+        "number": "04",
+        "title": "Structured Launch"
+      },
+      {
+        "number": "05",
+        "title": "Growth & Scaling Management"
+      }
     ]
   },
   "valueProposition": {
@@ -179,7 +194,8 @@
     "message": "We use cookies to improve your experience and analyse site traffic.",
     "accept": "Accept",
     "decline": "Decline",
-    "learnMore": "Learn more"
+    "learnMore": "Learn more",
+    "title": "We use cookies"
   },
   "loading": {
     "label": "Loading…"

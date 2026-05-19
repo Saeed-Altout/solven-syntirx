@@ -19,7 +19,9 @@ export const useConsentStore = create<ConsentState>((set) => ({
   hydrate: () => {
     if (typeof window === "undefined") return;
     const stored = localStorage.getItem("cookie-consent");
+    // explicitly set true/false/null so banner only shows when truly undecided
     if (stored === "accepted") set({ accepted: true });
     else if (stored === "declined") set({ accepted: false });
+    else set({ accepted: null });
   },
 }));

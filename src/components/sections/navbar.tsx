@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { LanguageSwitcher } from "@/components/language-switcher";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 
 interface NavbarProps {
@@ -64,7 +63,6 @@ export function Navbar({ locale }: NavbarProps) {
 
         {/* Desktop right */}
         <div className="hidden lg:flex items-center gap-2">
-          <ThemeToggle />
           <LanguageSwitcher />
           <Link
             href={`/${locale}/#contact`}
@@ -74,9 +72,8 @@ export function Navbar({ locale }: NavbarProps) {
           </Link>
         </div>
 
-        {/* Mobile right: theme + language + hamburger */}
+        {/* Mobile right: language + hamburger */}
         <div className="lg:hidden flex items-center gap-2">
-          <ThemeToggle />
           <LanguageSwitcher showLabel={false} />
           <button
             className="text-charcoal hover:text-ink transition-colors p-1"

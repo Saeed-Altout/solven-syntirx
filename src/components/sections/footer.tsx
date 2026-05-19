@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/logo";
+import { ThemeToggle } from "@/components/theme-toggle";
 import type { TranslationValues } from "next-intl";
 import { AnimatedSection } from "@/components/animated-section";
 
@@ -101,9 +102,12 @@ export function Footer({ t, locale }: FooterProps) {
         </div>
         </AnimatedSection>
 
-        <p className="pt-8 font-sans text-xs text-stone text-center">
-          {t("copyright", { year })}
-        </p>
+        <div className="pt-8 flex items-center justify-between">
+          <p className="font-sans text-xs text-stone">
+            {t("copyright", { year })}
+          </p>
+          <ThemeToggle />
+        </div>
       </div>
     </footer>
   );

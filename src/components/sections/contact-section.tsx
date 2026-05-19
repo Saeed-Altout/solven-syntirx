@@ -54,7 +54,7 @@ export function ContactSection() {
     <section id="contact" className="bg-canvas px-6 py-24 lg:px-8 lg:py-32">
       <div className="mx-auto max-w-[1200px]">
         <AnimatedSection variant="fade-up">
-          <span className="inline-flex items-center rounded-ds-full border border-hairline-strong bg-surface-elevated px-3 py-1 font-sans text-xs text-body-text mb-6">
+          <span className="inline-flex items-center rounded-ds-full border border-hairline-strong bg-surface-elevated px-3 py-1 font-sans text-xs text-body-text mb-6 shadow-[0_0_10px_rgba(59,158,255,0.18)]">
             {t("badge")}
           </span>
         </AnimatedSection>

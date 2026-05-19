@@ -8,6 +8,7 @@ import { VisionSection } from "@/components/sections/vision-section";
 import { GovernanceSection } from "@/components/sections/governance-section";
 import { CtaSection } from "@/components/sections/cta-section";
 import { ContactSection } from "@/components/sections/contact-section";
+import { PartnersSection } from "@/components/sections/partners-section";
 import { Navbar } from "@/components/sections/navbar";
 import { Footer } from "@/components/sections/footer";
 import { getTranslations } from "next-intl/server";
@@ -38,6 +39,7 @@ export default async function LandingPage({ params }: PageProps) {
       <Navbar locale={locale} />
       <main>
         <HeroSection t={tHero} locale={locale} />
+        <PartnersSection />
         <AboutSection t={tAbout} />
         <WhyNowSection t={tWhyNow} />
         <WhatWeBuildSection t={tWhatWeBuild} />

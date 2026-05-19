@@ -2,24 +2,37 @@
 
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useConsentStore } from "@/store/consent-store";
 
 export function CookieBanner() {
   const t = useTranslations("cookie");
   const locale = useLocale();
   const { accepted, setConsent, hydrate } = useConsentStore();
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
     hydrate();
+    setHydrated(true);
   }, [hydrate]);
 
-  if (accepted !== null) return null;
+  // Don't render until we've read localStorage, and hide if already decided
+  if (!hydrated || accepted !== null) return null;
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-[100] border-t border-hairline-strong bg-surface-card px-6 py-4">
-      <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-4">
-        <p className="font-body text-sm text-body-text max-w-xl">
+    <div className="fixed bottom-6 inset-x-0 z-[100] flex justify-center px-4 pointer-events-none">
+      <div className="pointer-events-auto w-full max-w-lg rounded-2xl border border-hairline-strong bg-canvas/70 backdrop-blur-md shadow-[0_8px_40px_rgba(0,0,0,0.4)] px-6 py-5">
+
+        {/* Cookie icon + title */}
+        <div className="flex items-center gap-3 mb-3">
+          <span className="text-xl select-none">🍪</span>
+          <p className="font-sans text-sm font-medium text-ink">
+            {t("title")}
+          </p>
+        </div>
+
+        {/* Message */}
+        <p className="font-body text-sm text-body-text leading-relaxed mb-5">
           {t("message")}{" "}
           <Link
             href={`/${locale}/privacy-policy`}
@@ -28,20 +41,23 @@ export function CookieBanner() {
             {t("learnMore")}
           </Link>
         </p>
-        <div className="flex items-center gap-3 shrink-0">
-          <button
-            onClick={() => setConsent(false)}
-            className="inline-flex items-center h-8 px-4 rounded-ds-md border border-hairline-strong bg-surface-elevated text-ink font-sans text-sm font-medium transition-colors hover:bg-surface-card"
-          >
-            {t("decline")}
-          </button>
+
+        {/* Actions */}
+        <div className="flex items-center gap-3">
           <button
             onClick={() => setConsent(true)}
-            className="inline-flex items-center h-8 px-4 rounded-ds-md bg-ink text-canvas font-sans text-sm font-medium transition-colors hover:bg-surface-light"
+            className="flex-1 inline-flex items-center justify-center h-9 px-4 rounded-ds-md bg-ink text-canvas font-sans text-sm font-medium transition-colors hover:bg-surface-light"
           >
             {t("accept")}
           </button>
+          <button
+            onClick={() => setConsent(false)}
+            className="flex-1 inline-flex items-center justify-center h-9 px-4 rounded-ds-md border border-hairline-strong bg-transparent text-charcoal font-sans text-sm font-medium transition-colors hover:text-ink hover:bg-surface-elevated"
+          >
+            {t("decline")}
+          </button>
         </div>
+
       </div>
     </div>
   );

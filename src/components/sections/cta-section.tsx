@@ -16,7 +16,13 @@ export function CtaSection({ t, locale }: CtaSectionProps) {
     <section className="bg-canvas px-6 py-24 lg:px-8 lg:py-32">
       <div className="mx-auto max-w-300">
         <AnimatedSection variant="scale-up">
-          <div className="rounded-ds-lg border border-hairline-strong bg-surface-card p-10 lg:p-16 text-center">
+          <div className="relative rounded-ds-lg border border-hairline-strong bg-surface-card p-10 lg:p-16 text-center overflow-hidden">
+            {/* top-center blue glow */}
+            <div aria-hidden className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 rounded-full bg-accent-blue opacity-10 blur-3xl" />
+            {/* bottom-left orange glow */}
+            <div aria-hidden className="pointer-events-none absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-accent-orange opacity-[0.07] blur-3xl" />
+            {/* bottom-right green glow */}
+            <div aria-hidden className="pointer-events-none absolute -bottom-20 -right-20 w-72 h-72 rounded-full bg-accent-green opacity-[0.06] blur-3xl" />
             <h2 className="font-display text-[clamp(2rem,4.5vw,3.5rem)] leading-none tracking-tight text-ink">
               {t("headline")}
             </h2>

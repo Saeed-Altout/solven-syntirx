@@ -51,7 +51,7 @@ export function HeroSection({ t, locale }: HeroSectionProps) {
       <div className="relative mx-auto max-w-300 flex flex-col items-center text-center">
         {/* Badge */}
         <AnimatedSection variant="fade-down" delay={0}>
-          <span className="inline-flex items-center rounded-ds-full border border-hairline-strong bg-surface-elevated px-3 py-1 font-sans text-xs text-charcoal uppercase tracking-widest mb-7">
+          <span className="inline-flex items-center rounded-ds-full border border-hairline-strong bg-surface-elevated px-3 py-1 font-sans text-xs text-charcoal uppercase tracking-widest mb-7 shadow-[0_0_10px_rgba(59,158,255,0.18)]">
             Solven Syntrix
           </span>
         </AnimatedSection>

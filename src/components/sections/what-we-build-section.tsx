@@ -25,7 +25,7 @@ export function WhatWeBuildSection({ t }: WhatWeBuildSectionProps) {
     <section id="what-we-build" className="bg-canvas px-6 py-24 lg:px-8 lg:py-32">
       <div className="mx-auto max-w-[1200px]">
         <AnimatedSection variant="fade-up">
-          <span className="inline-flex items-center rounded-ds-full border border-hairline-strong bg-surface-elevated px-3 py-1 font-sans text-xs text-body-text mb-6">
+          <span className="inline-flex items-center rounded-ds-full border border-hairline-strong bg-surface-elevated px-3 py-1 font-sans text-xs text-body-text mb-6 shadow-[0_0_10px_rgba(59,158,255,0.18)]">
             {t("badge")}
           </span>
           <h2 className="font-display text-[clamp(2rem,4.5vw,3.5rem)] leading-none tracking-tight text-ink max-w-2xl">
